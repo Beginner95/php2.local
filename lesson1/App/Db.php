@@ -20,7 +20,9 @@ class Db
     {
         $sth = $this->dbh->prepare($query);
         $result = $sth->execute($params);
-
+        /*
+         * Воспользовался данной вами возможности, и опустил данные пункты 2 и 3.
+         * */
     }
 
     public function query(string $sql, array $data = [], $class = null)
