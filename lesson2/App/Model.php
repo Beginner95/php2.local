@@ -16,6 +16,8 @@ abstract  class Model
         );
         return $data;
     }
+    
+    
 
     public static function findById($id)
     {
@@ -25,11 +27,20 @@ abstract  class Model
             [':id' => $id],
             static::class
         );
-        if (!empty($data[0])) {
-            return $data[0];
-        } else {
-            return false;
-        }
+        return $data[0] ?? false;
+    }
+    
+    
+
+    public static function findLast($limit)
+    {
+        $db = new Db();
+        $data = $db->query(
+            'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $limit,
+            [],
+            static::class
+        );
+        return $data;
     }
 
     public function isNew()
@@ -37,37 +48,71 @@ abstract  class Model
         return empty ($this->id);
     }
 
-    public function insert()
+    protected function insert()
     {
-        if ($this->isNew()) {
-            $columns = [];
-            $binds = [];
-            $data = [];
-            foreach ($this as $column => $value) {
-                if ('id' == $column) {
-                    continue;
-                }
-                $columns[] = $column;
-                $binds[] = ':' . $column;
-                $data[':' . $column] = $value;
+        $columns = [];
+        $binds = [];
+        $data = [];
+        foreach ($this as $column => $value) {
+            if ('id' == $column) {
+                continue;
             }
-
-            $sql = '
-              INSERT INTO ' . static::$table . '
-              (' . implode(', ', $columns ) .')
-              VALUES
-              (' . implode(', ', $binds ) . ')
-              ';
-
-            $db = new Db();
-            $db->execute($sql, $data);
-            $this->id = $db->lastInsertId();
+            $columns[] = $column;
+            $binds[] = ':' . $column;
+            $data[':' . $column] = $value;
         }
 
+        $sql = '
+            INSERT INTO ' . static::$table . '
+            (' . implode(', ', $columns ) .')
+            VALUES
+            (' . implode(', ', $binds ) . ')
+        ';
+        $db = new Db();
+        $db->execute($sql, $data);
+
+        $this->id = $db->lastInsertId();
     }
 
-    public function update()
+    protected function update()
     {
+        $columns = [];
+        $data = [];
+        $data[':id'] = $this->id;
+        foreach ($this as $column => $value) {
+            if ('id' == $column) {
+                continue;
+            }
+            $columns[] = $column . '=:' . $column;
+            $data[':' . $column] = $value;
+        }
 
+        $sql = '
+            UPDATE ' . static::$table . '
+            SET ' . implode(', ', $columns) . '
+            WHERE id=:id
+        ';
+
+        $db = new Db();
+        $db->execute($sql, $data);
+    }
+
+    public function save()
+    {
+        if (false === $this->isNew()) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
+    }
+
+    public function delete()
+    {
+        if (false === $this->isNew()) {
+            $data = [':id' => $this->id];
+            $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
+            $db = new Db();
+            $db->execute($sql, $data);
+        }
     }
 }

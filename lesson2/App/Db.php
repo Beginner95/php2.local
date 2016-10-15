@@ -24,7 +24,7 @@ class Db
             var_dump($sth->errorInfo());
             die;
         }
-        return false;
+        return true;
     }
 
     public function query(string $sql, array $data = [], $class = null)

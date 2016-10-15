@@ -3,6 +3,7 @@
 namespace App;
 
 class Config
+    extends Singleton
 {
     public $data;
     public function __construct(){
