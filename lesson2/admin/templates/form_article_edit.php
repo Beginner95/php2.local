@@ -8,7 +8,7 @@
 <body>
 <article>
     <table>
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>?id=<?php echo $data->id; ?>"
+        <form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
         <tr>
             <td>Заголовок</td>
             <td><input type="text" name="title" value="<?php echo $data->title; ?>"></td>
