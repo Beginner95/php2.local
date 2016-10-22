@@ -1,9 +1,7 @@
 <?php
 require __DIR__ . '/autoload.php';
 
-//$conf = new App\Config();
-//echo $conf->data['db']['host'];
-
+$author = \App\Model\Author::findAll();
 $data = \App\Model\Article::findLast(3);
 $view = new \App\View();
 $view->assing('news', $data);

@@ -10,7 +10,7 @@
     <?php if (!empty($news)) { ?>
         <?php foreach ($news as $article): ?>
                 <article>
-                    <a href="/lesson2/article.php?id=<?= $article->id ?>"><?php echo $article->title; ?></a>
+                    <a href="/lesson3/article.php?id=<?= $article->id ?>"><?php echo $article->title; ?></a>
                 </article>
         <?php endforeach; ?>
     <?php } else { ?>

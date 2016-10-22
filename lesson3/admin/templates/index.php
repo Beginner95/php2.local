@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Новости</h1>
-<a href="/lesson2/admin/edit.php">Добавить новость</a>
+<a href="/lesson3/admin/edit.php">Добавить новость</a>
 <?php if (!empty($news)) { ?>
     <?php foreach ($news as $article) : ?>
         <article>
