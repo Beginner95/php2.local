@@ -11,6 +11,10 @@
         <?php foreach ($news as $article): ?>
                 <article>
                     <a href="/lesson3/article.php?id=<?= $article->id ?>"><?php echo $article->title; ?></a>
+                    <p><?php echo substr($article->lead, 0, 200); ?></p>
+                    <?php if (!empty($article->author)) : ?>
+                        <p class="author">Автор: <?php echo $article->author->name; ?></p>
+                    <?php endif; ?>
                 </article>
         <?php endforeach; ?>
     <?php } else { ?>

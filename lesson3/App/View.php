@@ -2,14 +2,9 @@
 
 namespace App;
 
-
 class View
 {
-    protected $data = [];
-    public function assing($name, $value)
-    {
-        $this->data[$name] = $value;
-    }
+    use SettingReading;
 
     public function display($tamplate)
     {
