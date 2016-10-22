@@ -7,6 +7,6 @@ class Config
 {
     public $data;
     public function __construct(){
-        return $this->data =  include __DIR__ . '/../config.php';
+        $this->data =  include __DIR__ . '/../config.php';
     }
 }
