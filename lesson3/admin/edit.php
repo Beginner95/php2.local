@@ -9,14 +9,11 @@
 
 
     if (!empty($_POST)) {
-        foreach ($article as $key => $value) {
-            if ('id' == $key) {
-                continue;
-            }
-            $article->$key = strip_tags($_POST[$key]);
-        }
+        $article->title = strip_tags($_POST['title']);
+        $article->lead = strip_tags($_POST['lead']);
+        $article->author = strip_tags($_POST['author']);
         $article->save();
-        header('Location: /lesson2/admin/index.php');
+        header('Location: /lesson3/admin/index.php');
     }
 
     $view = new \App\View();
