@@ -3,6 +3,7 @@
 namespace App;
 
 class View
+    implements Iterator, Countable
 {
     use SettingReading;
 
