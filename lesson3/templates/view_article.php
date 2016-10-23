@@ -10,7 +10,11 @@
         <?php if (false !== $article) { ?>
             <h2><?php echo $article->title; ?></h2>
             <p><?php echo $article->lead; ?></p>
-            <div class="author">Автор: <?php echo $article->author->name; ?></div>
+
+            <?php if (!empty($article->author)) : ?>
+                <div class="author">Автор: <?php echo $article->author->name; ?></div>
+            <?php endif; ?>
+            
         <?php } else { ?>
             <h2>Новость отсутствует</h2>
         <?php } ?>
