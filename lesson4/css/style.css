@@ -1,0 +1,47 @@
+body {
+    background: #f7f7f7;
+}
+
+article {
+    width: 800px;
+    border: 1px solid #e0e0e0;
+    margin: 5px auto;
+    padding: 15px;
+}
+
+h1,h2 {
+    text-align: center;
+}
+
+input[type="text"]{
+    width: 200px;
+}
+
+textarea {
+    width: 500px;
+    height: 200px;
+    resize: none;
+}
+
+article a {
+    color: #111a4d;
+    text-decoration: none;
+    font: 15px Verdana;
+    border: 1px solid #e0e0e0;
+    background: #eeeeee;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+article a:hover{
+    border: 1px solid #e0e0e0;
+    background: #f7f7f7;
+}
+
+article p {
+    text-align: justify;
+}
+
+article .author {
+    color: #999999;
+}

@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <td>Автор</td>
-            <td><input type="text" name="author_id" value="<?php echo $data->author_id; ?>"></td>
+            <td><input type="text" name="author" value="<?php echo $data->author; ?>"></td>
         </tr>
         <tr>
             <td colspan="2" align="right"><input type="submit" name="query" value="Записать"></td>

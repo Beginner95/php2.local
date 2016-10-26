@@ -11,5 +11,5 @@ class Article
     public $id;
     public $title;
     public $lead;
-    public $author;
+    public $author_id;
 }
