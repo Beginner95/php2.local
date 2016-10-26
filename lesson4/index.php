@@ -1,6 +1,10 @@
 <?php
 require __DIR__ . '/autoload.php';
-$data = \App\Model\Article::findLast(3);
-$view = new \App\View();
-$view->news = $data;
-$view->display(__DIR__ . '/templates/view_news.php');
+
+$parts = explode('/', $_SERVER['REQUEST_URI']);
+$ctrlRequest = !empty($parts[1]) ? $parts[1] : 'Index';
+$ctrlClassName = '\App\Controllers\\' . $ctrlRequest;
+$ctrl = new $ctrlClassName;
+$actRequest = !empty($parts[2]) ? $parts[2] : 'Default';
+$actMethodName = 'action' . $actRequest;
+$ctrl->$actMethodName();
