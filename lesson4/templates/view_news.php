@@ -10,7 +10,7 @@
     <?php if (!empty($news)) { ?>
         <?php foreach ($news as $article): ?>
                 <article>
-                    <a href="/lesson4/article.php?id=<?= $article->id ?>"><?php echo $article->title; ?></a>
+                    <a href="/lesson4/news/one/?id=<?= $article->id ?>"><?php echo $article->title; ?></a>
                     <p><?php echo $article->lead; ?></p>
                     <?php if (!empty($article->author)) : ?>
                         <p class="author">Автор: <?php echo $article->author->name; ?></p>
