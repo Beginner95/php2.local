@@ -48,6 +48,6 @@ class Admin
     public function actionEdit()
     {
         $this->view->article = $this->getArticle();
-        $this->view->display(__DIR__ . '/../../admin/templates/form_article_edit.php');
+        $this->view->display(__DIR__ . '/../../admin/templates/form.php');
     }
 }
