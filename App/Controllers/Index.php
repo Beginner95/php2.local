@@ -10,8 +10,16 @@ class Index
 {
     public function actionDefault()
     {
-        $news = Article::findAll();
-        $this->view->news = $news;
-        $this->view->display(__DIR__ . '/../../templates/view_news.php');
+        try {
+            $news = Article::findAll();
+            $this->view->news = $news;
+            $this->view->display(__DIR__ . '/../../templates/view_news.php');
+        } catch (\Exception $e) {
+            $this->view->error = $e->getMessage();
+            $this->view->display(__DIR__ . '/../../templates/error.php');
+
+        }
+
+
     }
 }

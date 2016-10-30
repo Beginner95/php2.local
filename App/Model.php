@@ -10,7 +10,7 @@ abstract  class Model
     {
         $db = new Db();
         $data = $db->query(
-            'SELECT * FROM ' . static::$table,
+            'SELECT asdf FROM ' . static::$table,
             [],
             static::class
         );

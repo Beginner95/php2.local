@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Model\Article;
-
 abstract class Controller
 {
     protected $view;
@@ -15,7 +13,7 @@ abstract class Controller
     public function action($action)
     {
         if (false === $this->access()) {
-            exit('Доступ закрыт');
+            return false;
         } else {
             $actMethodName = 'action' . $action;
             return $this->$actMethodName();
