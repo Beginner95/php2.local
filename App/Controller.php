@@ -15,7 +15,7 @@ abstract class Controller
     public function action($action)
     {
         if (false === $this->access()) {
-            return false;
+            exit('Доступ закрыт');
         } else {
             $actMethodName = 'action' . $action;
             return $this->$actMethodName();

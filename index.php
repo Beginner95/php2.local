@@ -5,6 +5,8 @@ $ctrlRequest = !empty($parts[1]) ? $parts[1] : 'Index';
 $ctrlClassName = '\App\Controllers\\' . $ctrlRequest;
 $actRequest = !empty($parts[2]) ? $parts[2] : 'Default';
 $ctrl = new $ctrlClassName;
-if (false === $ctrl->action($actRequest)) {
-    exit('Доступ закрыт');
+try {
+    $ctrl->action($actRequest);
+} catch (Exception $e) {
+    echo 'Error: ' .$e->getMessage();
 }

@@ -9,11 +9,12 @@ class Db
     {
         $conf = new Config();
         $dns = $conf->data['db']['driver']. ':dbname=' . $conf->data['db']['dbname'] . ';host=' . $conf->data['db']['host'];
-        $this->dbh = new \PDO(
-            $dns,
-            $conf->data['db']['user'],
-            $conf->data['db']['password']
-        );
+        try {
+            $this->dbh = new \PDO($dns, $conf->data['db']['user'], $conf->data['db']['password']);
+        } catch (\PDOException $e) {
+            throw new DbException('Ошибка соединения с БД');
+        }
+
     }
 
     public function execute(string $sql, array $data = [])
@@ -21,8 +22,7 @@ class Db
         $sth = $this->dbh->prepare($sql);
         $result = $sth->execute($data);
         if (false === $result) {
-            var_dump($sth->errorInfo());
-            die;
+            throw new DbException('Ошибка запроса к БД');
         }
         return true;
     }
@@ -32,8 +32,7 @@ class Db
         $sth = $this->dbh->prepare($sql);
         $result = $sth->execute($data);
         if (false === $result) {
-            var_dump($sth->errorInfo());
-            die;
+            throw new DbException('Ошибка запроса к БД');
         }
         if (null === $class) {
             return $sth->fetchAll();
