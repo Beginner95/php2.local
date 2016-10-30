@@ -26,15 +26,9 @@ abstract class Controller
     {
         $sec = date('s');
         //$rand = rand(1, 2)
-        if ($sec%2 == 0) {
+        if ($sec == 0) {
             return true;
         }
         return false;
-    }
-
-    public function actionDefault()
-    {
-        $this->view->news = Article::findAll();
-        $this->view->display(__DIR__ . '/../templates/view_news.php');
     }
 }

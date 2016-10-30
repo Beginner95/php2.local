@@ -1,7 +1,11 @@
 <?php
 require __DIR__ . '/../autoload.php';
 
-$data = \App\Model\Article::findAll();
-$view = new \App\View();
-$view->assing('news', $data);
-$view->display(__DIR__ . '/templates/index.php');
+$parts = explode('/', $_SERVER['REQUEST_URI']);
+$ctrlRequest = !empty($parts[1]) ? $parts[1] : 'Index';
+$ctrlClassName = '\App\Controllers\\' . $ctrlRequest;
+$actRequest = !empty($parts[2]) ? $parts[2] : 'Default';
+$ctrl = new $ctrlClassName;
+if (false === $ctrl->action($actRequest)) {
+    exit('Доступ закрыт');
+}

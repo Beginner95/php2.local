@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Новость</title>
-    <link rel="stylesheet" type="text/css" href="/lesson2/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
     <article>
@@ -14,7 +14,6 @@
             <?php if (!empty($article->author)) : ?>
                 <div class="author">Автор: <?php echo $article->author->name; ?></div>
             <?php endif; ?>
-            
         <?php } else { ?>
             <h2>Новость отсутствует</h2>
         <?php } ?>
