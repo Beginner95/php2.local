@@ -2,7 +2,7 @@
 namespace App;
 
 
-trait SettingReading
+trait TMagic
 {
     protected $data = [];
 

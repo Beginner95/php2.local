@@ -5,7 +5,7 @@ namespace App;
 class View
     implements \Countable, \Iterator
 {
-    use SettingReading;
+    use TMagic;
 
     public function display($tamplate)
     {

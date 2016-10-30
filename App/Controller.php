@@ -26,7 +26,7 @@ abstract class Controller
     {
         $sec = date('s');
         //$rand = rand(1, 2)
-        if ($sec == 0) {
+        if (0 == 0) {
             return true;
         }
         return false;
