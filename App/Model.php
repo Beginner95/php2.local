@@ -10,14 +10,13 @@ abstract  class Model
     {
         $db = new Db();
         $data = $db->query(
-            'SELECT asdf FROM ' . static::$table,
+            'SELECT * FROM ' . static::$table,
             [],
             static::class
         );
         return $data;
     }
-    
-    
+
 
     public static function findById($id)
     {
@@ -27,9 +26,11 @@ abstract  class Model
             [':id' => $id],
             static::class
         );
-        return $data[0] ?? false;
+        if (empty($data[0])) {
+            throw new NotFoundException('Ошибка 404 - не найдено');
+        }
+        return $data[0];
     }
-    
     
 
     public static function findLast($limit)

@@ -10,8 +10,13 @@ class News
 {
     public function actionOne()
     {
-        $article = Article::findById((int)$_GET['id']);
-        $this->view->article = $article;
-        $this->view->display(__DIR__ . '/../../templates/view_article.php');
+        try {
+            $article = Article::findById((int)$_GET['id']);
+            $this->view->article = $article;
+            $this->view->display(__DIR__ . '/../../templates/view_article.php');
+        } catch (\Exception $e) {
+            $this->view->error = $e->getMessage();
+            $this->view->display(__DIR__ . '/../../templates/error.php');
+        }
     }
 }

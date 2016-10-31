@@ -45,3 +45,8 @@ article p {
 article .author {
     color: #999999;
 }
+
+article .error {
+    color: red;
+    font: bold 14px Verdana;
+}

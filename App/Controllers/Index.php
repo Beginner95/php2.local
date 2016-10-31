@@ -19,7 +19,5 @@ class Index
             $this->view->display(__DIR__ . '/../../templates/error.php');
 
         }
-
-
     }
 }
