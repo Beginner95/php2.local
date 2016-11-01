@@ -26,10 +26,7 @@ abstract  class Model
             [':id' => $id],
             static::class
         );
-        if (empty($data[0])) {
-            throw new NotFoundException('Ошибка 404 - не найдено');
-        }
-        return $data[0];
+        return $data[0] ?? false;
     }
     
 
